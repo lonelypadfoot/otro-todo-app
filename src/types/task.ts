@@ -21,7 +21,7 @@ export interface TaskStats {
 
 export interface TaskContextType {
   tasks: Task[];
-  addTask: (title: string, description?: string) => void;
+  addTask: (title: string, description?: string, priority?: 'low' | 'medium' | 'high') => void;
   deleteTask: (id: string) => void;
   toggleTask: (id: string) => void;
   updateTask: (id: string, updates: Partial<Task>) => void;

@@ -79,11 +79,12 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [state.tasks]);
 
-  const addTask = (title: string, description?: string) => {
+  const addTask = (title: string, description?: string, priority?: 'low' | 'medium' | 'high') => {
     const newTask: Task = {
       id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       title: title.trim(),
       description: description?.trim(),
+      priority: priority || 'medium',
       completed: false,
       createdAt: new Date(),
       updatedAt: new Date(),
