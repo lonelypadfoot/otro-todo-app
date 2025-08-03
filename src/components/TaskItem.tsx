@@ -13,7 +13,7 @@ import {
   AlertDialogTitle, 
   AlertDialogTrigger 
 } from '@/components/ui/alert-dialog';
-import { Trash2, Calendar, Clock } from 'lucide-react';
+import { Trash2, Calendar, Clock, Flag } from 'lucide-react';
 import { Task } from '@/types/task';
 import { useTask } from '@/contexts/TaskContext';
 import { useToast } from '@/hooks/use-toast';
@@ -63,6 +63,32 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
     }).format(date);
   };
 
+  const getPriorityColor = (priority?: string) => {
+    switch (priority) {
+      case 'high':
+        return 'text-red-500';
+      case 'medium':
+        return 'text-yellow-500';
+      case 'low':
+        return 'text-green-500';
+      default:
+        return 'text-gray-400';
+    }
+  };
+
+  const getPriorityLabel = (priority?: string) => {
+    switch (priority) {
+      case 'high':
+        return 'Alta';
+      case 'medium':
+        return 'Media';
+      case 'low':
+        return 'Baja';
+      default:
+        return 'Sin definir';
+    }
+  };
+
   return (
     <Card className={`
       group bg-white/80 backdrop-blur-sm border-0 shadow-md hover:shadow-lg 
@@ -92,6 +118,15 @@ export const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
               `}>
                 {task.description}
               </p>
+            )}
+            
+            {task.priority && (
+              <div className="flex items-center gap-1 mt-2">
+                <Flag className={`h-3 w-3 ${getPriorityColor(task.priority)}`} />
+                <span className={`text-xs font-medium ${getPriorityColor(task.priority)}`}>
+                  {getPriorityLabel(task.priority)}
+                </span>
+              </div>
             )}
             
             <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">

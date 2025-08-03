@@ -6,6 +6,7 @@ Esta es una aplicación sencilla de lista de tareas ("todo app") desarrollada pa
 
 - Agregar, editar y eliminar tareas
 - Marcar tareas como completadas
+- Asignar prioridades a las tareas (Baja, Media, Alta)
 - Interfaz fácil de usar
 
 ## Instalación
@@ -30,6 +31,7 @@ Esta es una aplicación sencilla de lista de tareas ("todo app") desarrollada pa
 ## Uso
 
 - Añade tus tareas utilizando el formulario principal.
+- Selecciona la prioridad de cada tarea (Baja, Media o Alta) desde el dropdown.
 - Haz clic en una tarea para marcarla como completada.
 - Utiliza los botones para editar o eliminar tareas según sea necesario.
 

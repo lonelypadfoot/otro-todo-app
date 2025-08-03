@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Plus } from 'lucide-react';
 import { useTask } from '@/contexts/TaskContext';
 import { useToast } from '@/hooks/use-toast';
@@ -11,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 export const AddTaskForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { addTask } = useTask();
@@ -31,9 +33,10 @@ export const AddTaskForm: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      addTask(title, description || undefined);
+      addTask(title, description || undefined, priority);
       setTitle('');
       setDescription('');
+      setPriority('medium');
 
       toast({
         title: "Éxito",
@@ -88,6 +91,37 @@ export const AddTaskForm: React.FC = () => {
               rows={3}
               disabled={isSubmitting}
             />
+          </div>
+
+          <div>
+            <Label htmlFor="priority" className="text-sm font-medium text-gray-700">
+              Prioridad
+            </Label>
+            <Select value={priority} onValueChange={(value: 'low' | 'medium' | 'high') => setPriority(value)} disabled={isSubmitting}>
+              <SelectTrigger className="mt-1 bg-white/50 border-gray-200 focus:border-blue-400 focus:ring-blue-400">
+                <SelectValue placeholder="Selecciona la prioridad" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="low">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Baja</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="medium">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span>Media</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="high">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span>Alta</span>
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <Button 
