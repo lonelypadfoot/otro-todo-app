@@ -43,7 +43,7 @@ function App() {
             {/* Welcome Section */}
             <div className="text-center mb-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Tu App De Tareas De Siempre (Todo App)
+                Otro Todo App
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Una aplicación de gestión de tareas limpia y extensible diseñada para aprender flujos de trabajo de Git. 
